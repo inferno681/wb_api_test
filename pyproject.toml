@@ -1,0 +1,22 @@
+[project]
+name = "src"
+version = "0.1.0"
+description = ""
+authors = [
+    { name = "Vasilii Stakrotckii", email = "142693897+inferno681@users.noreply.github.com" },
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standart] (>=0.115.6,<0.116.0)",
+    "sqlalchemy (>=2.0.37,<3.0.0)",
+    "asyncpg (>=0.30.0,<0.31.0)",
+    "alembic (>=1.14.1,<2.0.0)",
+    "httpx (>=0.28.1,<0.29.0)",
+    "uvicorn (>=0.34.0,<0.35.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
