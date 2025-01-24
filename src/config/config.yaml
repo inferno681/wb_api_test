@@ -1,0 +1,14 @@
+service:
+  title: "Collect data service"
+  description: "Сервис для сбора данных о товарах"
+  host: "0.0.0.0"
+  port: 8000
+  debug: true
+  base_url: "https://card.wb.ru/cards/v1/detail?appType=1&curr=rub&dest=-1257786&spp=30&nm="
+
+db:
+  host: "localhost"
+  port: 5432
+  name: "postgres"
+  username: "postgres"
+  echo: true

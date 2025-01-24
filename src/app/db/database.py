@@ -1,9 +1,16 @@
+from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
+from config import config
 
 engine = create_async_engine(
-    url='postgresql+asyncpg://postgres:password@localhost:5432/postgres',
-    echo=True,
+    url=config.async_db_url,
+    echo=config.db.echo,
+)
+
+sync_engine = create_engine(
+    url=config.sync_db_url,
+    echo=config.db.echo,
 )
 
 async_session = async_sessionmaker(bind=engine)
