@@ -11,4 +11,4 @@ db:
   port: 5432
   name: "postgres"
   username: "postgres"
-  echo: true
+  echo: false

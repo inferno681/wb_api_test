@@ -33,7 +33,11 @@ types-pyyaml = "^6.0.12.20241230"
 flake8 = "^7.1.1"
 isort = "^5.13.2"
 wemake-python-styleguide = "^1.0.0"
+pytest = "^8.3.4"
+sqlalchemy-utils = "^0.41.2"
+asgi-lifespan = "^2.1.0"
+pytest-cov = "^6.0.0"
 
 [[tool.mypy.overrides]]
-module = ["apscheduler.*"]
+module = ["apscheduler.*", "sqlalchemy_utils.*"]
 ignore_missing_imports = true

@@ -8,7 +8,7 @@ router = APIRouter(prefix='/v1')
 
 
 @router.post('/products', response_model=BaseResponse)
-async def get_product(
+async def collect_data(
     data: BaseRequest,
     request: Request,
     session: AsyncSession = Depends(get_async_session),
@@ -16,7 +16,7 @@ async def get_product(
     return await request.app.state.service.collect_data(data.artikul, session)
 
 
-@router.get('/api/v1/subscribe/{artikul}', response_model=ResponseMessage)
+@router.get('/subscribe/{artikul}', response_model=ResponseMessage)
 async def subscribe(
     artikul: int,
     request: Request,
@@ -24,7 +24,7 @@ async def subscribe(
     return await request.app.state.service.subscribe(artikul)
 
 
-@router.delete('/api/v1/subscribe/{artikul}', response_model=ResponseMessage)
+@router.delete('/subscribe/{artikul}', response_model=ResponseMessage)
 async def unsubscribe(
     artikul: int,
     request: Request,

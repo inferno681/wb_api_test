@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BaseRequest(BaseModel):
@@ -25,8 +25,7 @@ class BaseResponse(BaseResponseCheck):
     created_at: datetime
     updated_at: datetime
 
-    class Config:
-        populate_by_name = True
+    model_config = ConfigDict(populate_by_name=True)
 
 
 class ResponseMessage(BaseModel):
