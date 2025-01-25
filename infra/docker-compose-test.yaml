@@ -1,0 +1,25 @@
+services:
+
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_volume:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=password
+
+  wb_service:
+    container_name: wb_service
+    image: inferno681/wb_service:latest
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+volumes:
+  db_volume:
