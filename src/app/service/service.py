@@ -35,13 +35,13 @@ class APIService:
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=UNEXPECTED_RESPONSE_ERROR,
             )
-        data = response.json().get('data', {}).get('products', [])[0]
+        data = response.json().get('data', {}).get('products', [])
         if not data:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=NO_DATA_ERROR.format(article=article),
             )
-        return data
+        return data[0]
 
     def check_data(self, data: dict) -> dict:
         """Check data request method."""
