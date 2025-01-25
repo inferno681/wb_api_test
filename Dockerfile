@@ -18,6 +18,8 @@ COPY ./alembic.ini  ./alembic.ini
 
 COPY ./src/app  ./src/app
 
+COPY ./README.md ./README.md
+
 ENV PYTHONPATH=/app/src/
 
 CMD ["python", "src/app/main.py"]

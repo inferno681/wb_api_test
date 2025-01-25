@@ -23,7 +23,7 @@ jobs:
         pip install poetry
         poetry install
 
-    - name: flake8
+    - name: isort
       run:  |
           poetry run isort src/
 
@@ -56,4 +56,6 @@ jobs:
         docker compose -f docker-compose-test.yaml exec wb_service pytest --cov --cov-fail-under=90 --cov-report term-missing
     - name: Tear down Docker Compose
       if: always()
-      run: docker compose -f docker-compose-test.yaml down
+      run: |
+        cd infra/
+        docker compose -f docker-compose-test.yaml down

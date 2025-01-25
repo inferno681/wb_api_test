@@ -17,6 +17,8 @@ COPY ./setup.cfg  ./setup.cfg
 
 COPY ./src  ./src
 
+COPY ./README.md ./README.md
+
 ENV PYTHONPATH=/app/src/
 
 CMD ["sh", "-c", "while true; do sleep 1; done"]
