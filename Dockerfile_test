@@ -9,15 +9,13 @@ COPY pyproject.toml poetry.lock* /app/
 
 RUN poetry config virtualenvs.create false
 
-RUN poetry install
+RUN poetry install --no-root
 
 COPY ./alembic.ini  ./alembic.ini
 
 COPY ./setup.cfg  ./setup.cfg
 
 COPY ./src  ./src
-
-COPY ./README.md ./README.md
 
 ENV PYTHONPATH=/app/src/
 
