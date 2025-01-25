@@ -53,7 +53,6 @@ jobs:
     - name: Run Pytest
       run: |
         sleep 3
-        cd infra/
         docker compose -f docker-compose-test.yaml exec wb_service pytest --cov --cov-fail-under=90 --cov-report term-missing
     - name: Tear down Docker Compose
       if: always()
