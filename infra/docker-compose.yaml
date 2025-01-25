@@ -8,14 +8,14 @@ services:
     volumes:
       - db_volume:/var/lib/postgresql/data/
     env_file:
-      - .env
+      - ../.env
 
   wb_service:
     container_name: wb_service
     build: ..
     restart: always
     env_file:
-      - .env
+      - ../.env
     ports:
       - 8000:8000
     depends_on:

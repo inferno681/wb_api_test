@@ -5,6 +5,9 @@ service:
   port: 8000
   debug: true
   base_url: "https://card.wb.ru/cards/v1/detail?appType=1&curr=rub&dest=-1257786&spp=30&nm="
+  tags_metadata_main:
+    name: "Product"
+    description: "Product data collection and subscriptions"
 
 db:
   host: "db"
