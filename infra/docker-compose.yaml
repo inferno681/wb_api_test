@@ -12,7 +12,7 @@ services:
 
   wb_service:
     container_name: wb_service
-    build: .
+    build: ..
     restart: always
     env_file:
       - .env

@@ -12,7 +12,9 @@ services:
 
   wb_service:
     container_name: wb_service
-    image: inferno681/wb_service:latest
+    build:
+      context: ..
+      dockerfile: Dockerfile_test
     restart: always
     env_file:
       - .env
