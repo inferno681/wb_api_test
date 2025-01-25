@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import yaml
-from pydantic import BaseModel, SecretStr
+from pydantic import BaseModel, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -29,10 +29,12 @@ class DatabaseSettings(BaseModel):
 class Secrets(BaseSettings):
     """Secrets settings."""
 
-    db_password: SecretStr = SecretStr('password')
+    db_password: SecretStr = Field(
+        default=SecretStr('password'), alias='POSTGRES_PASSWORD'
+    )
 
     model_config = SettingsConfigDict(
-        env_file=".env", env_file_encoding="utf-8"
+        env_file='.env', env_file_encoding='utf-8'
     )
 
 
@@ -47,6 +49,7 @@ class AppConfig(BaseSettings):
         env_file='.env',
         env_file_encoding='utf-8',
         case_sensitive=False,
+        extra='allow',
     )
 
     @classmethod

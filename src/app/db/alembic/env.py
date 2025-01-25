@@ -4,6 +4,7 @@ from alembic import context
 from sqlalchemy import engine_from_config, pool
 
 from app.db import Base
+from config import config as conf
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -16,8 +17,7 @@ if config.config_file_name is not None:
 
 config.set_main_option(
     'sqlalchemy.url',
-    'postgresql+asyncpg://postgres:password@localhost:5432/postgres'
-    + '?async_fallback=True',
+    f'{conf.async_db_url}?async_fallback=True',
 )
 
 # add your model's MetaData object here
