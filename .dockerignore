@@ -3,6 +3,7 @@
 .venv/
 .idea/
 venv/
+infra/
 .pytest_cache
 .mypy_cache
 .__pycache__

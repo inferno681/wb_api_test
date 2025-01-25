@@ -7,12 +7,12 @@ services:
       - "5432:5432"
     volumes:
       - db_volume:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_PASSWORD=password
+    env_file:
+      - .env
 
   wb_service:
     container_name: wb_service
-    build: .
+    build: ..
     restart: always
     env_file:
       - .env
