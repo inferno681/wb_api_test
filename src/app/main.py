@@ -26,14 +26,19 @@ async def lifespan(app: FastAPI):
     log.info('service stopped')
 
 
+tags_metadata = [config.service.tags_metadata_main]
+
 app = FastAPI(
     title=config.service.title,
     description=config.service.description,
+    tags_metadata=tags_metadata,
     debug=config.service.debug,
     lifespan=lifespan,
 )
 
-app.include_router(router_v1, prefix='/api')
+app.include_router(
+    router_v1, prefix='/api', tags=[config.service.tags_metadata_main['name']]
+)
 
 
 if __name__ == '__main__':

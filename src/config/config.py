@@ -14,6 +14,7 @@ class ServiceSettings(BaseModel):
     port: int
     debug: bool
     base_url: str
+    tags_metadata_main: dict
 
 
 class DatabaseSettings(BaseModel):
