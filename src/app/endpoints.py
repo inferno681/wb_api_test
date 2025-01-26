@@ -17,10 +17,7 @@ async def collect_data(
 
 
 @router.get('/subscribe/{artikul}', response_model=ResponseMessage)
-async def subscribe(
-    artikul: int,
-    request: Request,
-):
+async def subscribe(artikul: int, request: Request):
     return await request.app.state.service.subscribe(artikul)
 
 
@@ -30,3 +27,8 @@ async def unsubscribe(
     request: Request,
 ):
     return await request.app.state.service.unsubscribe(artikul)
+
+
+@router.get('/products/{artikul}', response_model=BaseResponse)
+async def get_product(artikul: int, request: Request):
+    return await request.app.state.service.get_product(artikul)

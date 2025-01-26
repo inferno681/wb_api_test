@@ -16,4 +16,6 @@ ABSENT_SUBSCRIPTION_MESSAGE = (
 )
 DB_ERROR = 'Произошла ошибка при обращении в бд.'
 
+ARTICLE_NOT_FOUND = 'Информация о товаре с артикулом {article} не найдена'
+
 NAME_LENGTH = 255

@@ -1,10 +1,12 @@
 from fastapi import HTTPException, status
 from httpx import AsyncClient
+from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.constants import (
     ABSENT_SUBSCRIPTION_MESSAGE,
+    ARTICLE_NOT_FOUND,
     DB_ERROR,
     EXIST_SUBSCRIPTION_MESSAGE,
     NO_DATA_ERROR,
@@ -71,6 +73,7 @@ class APIService:
         return product.to_dict()
 
     async def run_task(self, article):
+        """Task method."""
         async for session in get_async_session():
             await self.collect_data(article, session)
 
@@ -114,3 +117,17 @@ class APIService:
                 article=article
             )
         }
+
+    async def get_product(self, article: int):
+        """Get product info method."""
+        async for session in get_async_session():
+            result = await session.execute(
+                select(Product).where(Product.artikul == article)
+            )
+            result = result.scalar_one_or_none()
+            if not result:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail=ARTICLE_NOT_FOUND.format(article=article),
+                )
+            return result

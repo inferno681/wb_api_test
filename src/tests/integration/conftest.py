@@ -65,3 +65,8 @@ def collect_data_url():
 @pytest.fixture
 def subscription_url():
     return '/subscribe/211695539'
+
+
+@pytest.fixture
+def get_product_url():
+    return '/products/211695539'
