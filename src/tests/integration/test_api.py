@@ -91,3 +91,27 @@ async def test_absent_subscription(client, subscription_url):
         ABSENT_SUBSCRIPTION_MESSAGE.format(article=211695539)
         == response.json()['message']
     )
+
+
+@pytest.mark.anyio
+async def test_get_product(
+    client, collect_data_url, request_data, get_product_url, engine
+):
+    await client.post(collect_data_url, json=request_data)
+    response = await client.get(get_product_url)
+    assert response.status_code == status.HTTP_200_OK
+    async with engine.begin() as conn:
+        result = await conn.execute(
+            text('SELECT * FROM product WHERE artikul=211695539')
+        )
+    db_result = dict(result.mappings().first())
+
+    assert db_result
+    assert 'review_rating' in db_result
+    assert 'created_at' in db_result
+    assert 'updated_at' in db_result
+    db_result['review_rating'] = float(db_result['review_rating'])
+    db_result['created_at'] = db_result['created_at'].isoformat()
+    db_result['updated_at'] = db_result['updated_at'].isoformat()
+
+    assert db_result == response.json()
