@@ -73,6 +73,7 @@ class APIService:
         return product.to_dict()
 
     async def run_task(self, article):
+        """Task method."""
         async for session in get_async_session():
             await self.collect_data(article, session)
 
@@ -118,6 +119,7 @@ class APIService:
         }
 
     async def get_product(self, article: int):
+        """Get product info method."""
         async for session in get_async_session():
             result = await session.execute(
                 select(Product).where(Product.artikul == article)
